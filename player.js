@@ -6,4 +6,11 @@ class Player{
         this.selectedGesture = "";
         this.gestureList = ["rock", "paper", "scissors", "lizard", "spock"];
     }
+
+    selectGesture(){
+        this.selectedGesture = "";
+        while(!this.gestureList.includes(this.selectedGesture)){
+            this.selectedGesture = prompt("Please enter gesture choice: ").toLowerCase();
+        }
+    }
 }
