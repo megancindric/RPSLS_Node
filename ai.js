@@ -1,3 +1,5 @@
+"use strict";
+const {Player} = require("./player");
 class AI extends Player {
 
     constructor(){
@@ -8,4 +10,8 @@ class AI extends Player {
         let selection = Math.floor(Math.random() * this.gestureList.length);
         this.selectedGesture = this.gestureList[selection];
     }
+}
+
+module.exports = {
+    AI: AI
 }
