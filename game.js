@@ -1,3 +1,7 @@
+"use strict"
+const prompt = require("prompt-sync")();
+const {Human} = require("./human");
+const {AI} = require("./ai");
 class Game {
 
 
@@ -24,11 +28,17 @@ class Game {
 
     selectGameMode(){
         let gameMode = prompt("Press 1 for PvP.  Press 2 for PvAI. ");
-        if(gameMode == 1){
-
+        if(gameMode == "1"){
+            console.log("PvP Selected")
+            console.log("*******************************************************************************************************");
+            this.playerOne = new Human();
+            this.playerTwo = new Human();
         }
-        else if(gameMode == 2){
-
+        else if(gameMode == "2"){
+            console.log("PvAI Selected");
+            console.log("*******************************************************************************************************");
+            this.playerOne = new Human();
+            this.playerTwo = new AI();
         }
         else{
             console.log("Invalid choice - try again!")
@@ -36,14 +46,24 @@ class Game {
         }
     }
     playBestOfThree(){
-        //While p1 & p2 scores are below 3...
+        while(this.playerOne.score < 2 && this.playerTwo.score < 2){
+            this.singleRound();
+        }
     }
     singleRound(){
-
+        console.log("Let the round begin!")
+        console.log("*******************************************************************************************************");
+        this.playerOne.selectGesture();
+        this.playerTwo.selectGesture();
+        this.compareGestures();
     }
 
     runGame(){
-
+        this.displayWelcomeRules();
+        this.selectGameMode();
+        this.playBestOfThree();
+        this.displayGameWinner();
+        this.checkForReplay();
     }
 
     compareGestures(){
@@ -117,11 +137,15 @@ class Game {
             this.runGame()
         }
         else if (userInput == 2){
-            break;
+            return
         }
         else{
             console.log("Invalid input - try again!");
             this.checkForReplay();
         }
     }
+}
+
+module.exports = {
+    Game: Game
 }
