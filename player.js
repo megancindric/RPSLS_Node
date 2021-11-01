@@ -1,7 +1,9 @@
 class Player{
 
-    constructor(){
-        let name = prompt("Please enter your name: ");
-        super(name);
+    constructor(name){
+        this.name = name;
+        this.score = 0;
+        this.selectedGesture = "";
+        this.gestureList = ["rock", "paper", "scissors", "lizard", "spock"];
     }
 }
